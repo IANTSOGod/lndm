@@ -23,7 +23,7 @@ export default function Login() {
     e.preventDefault();
     const donnee = data as User;
     if (donnee.username == "iantso") {
-      navigate("/signUp");
+      navigate("/Home");
     }
   };
 

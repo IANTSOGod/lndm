@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import {
   Tooltip,
   TooltipContent,
@@ -14,94 +13,66 @@ import {
   Users2,
 } from "lucide-react";
 
-export default function Aside() {
+import { Label } from "../ui/label";
+//import { useState } from "react";
+
+interface AsideProps {
+  num: string;
+  setNum: (newNum: string) => void;
+}
+
+export default function Aside({ num, setNum }: AsideProps) {
+  const contentTable = [
+    "Home",
+    "Orders",
+    "Products",
+    "Customers",
+    "Analytics",
+  ] as string[];
+
+  const componentTable = [
+    <Home className="h-5 w-5"></Home>,
+    <ShoppingCart className="h-5 w-5"></ShoppingCart>,
+    <Package className="h-5 w-5"></Package>,
+    <Users2 className="h-5 w-5"></Users2>,
+    <LineChart className="h-5 w-5"></LineChart>,
+  ];
+
   return (
     <aside className="fixed inset-y-0 left-0 z-10 hidden w-14 flex-col border-r bg-background sm:flex">
       <nav className="flex flex-col items-center gap-4 px-2 py-4">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                to="/"
-                className="bg-accent flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <Home className="h-5 w-5" />
+        {contentTable.map((content, index) => (
+          <TooltipProvider key={index}>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Label
+                  onClick={() => {
+                    setNum(index.toString());
+                    num = index.toString();
+                  }}
+                  className={`${
+                    //numero
+                    num === index.toString() && "bg-accent"
+                  } flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8`}
+                >
+                  {componentTable[index]}
 
-                <span className="sr-only">Dashboard</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Dashboard</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                to="/"
-                className="flex h-9 w-9 items-center justify-center rounded-lg transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                <span className="sr-only">Orders</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Orders</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                to="/"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <Package className="h-5 w-5" />
-                <span className="sr-only">Products</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Products</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                to="/"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <Users2 className="h-5 w-5" />
-                <span className="sr-only">Customers</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Customers</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Link
-                to="/"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
-                <LineChart className="h-5 w-5" />
-                <span className="sr-only">Analytics</span>
-              </Link>
-            </TooltipTrigger>
-            <TooltipContent side="right">Analytics</TooltipContent>
-          </Tooltip>
-        </TooltipProvider>
+                  <span className="sr-only">{content}</span>
+                </Label>
+              </TooltipTrigger>
+              <TooltipContent side="right">{content}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        ))}
       </nav>
       <nav className="mt-auto flex flex-col items-center gap-4 px-2 py-4">
         <TooltipProvider>
           <Tooltip>
             <TooltipTrigger asChild>
-              <Link
-                to="/"
-                className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8"
-              >
+              <Label className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:text-foreground md:h-8 md:w-8">
                 <Settings className="h-5 w-5" />
                 <span className="sr-only">Settings</span>
-              </Link>
+              </Label>
             </TooltipTrigger>
             <TooltipContent side="right">Settings</TooltipContent>
           </Tooltip>

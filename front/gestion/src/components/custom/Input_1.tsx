@@ -2,10 +2,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 interface InputProps {
-  title: string;
-  type: string;
-  name: string;
-  placeholder: string;
+  title: string,
+  type: string,
+  name: string,
+  placeholder: string
 }
 
 export function InputWithLabel({ title, type, name, placeholder }: InputProps) {

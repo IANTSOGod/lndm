@@ -2,15 +2,16 @@ import { useState } from "react";
 import Aside from "@/components/custom/Aside";
 import Header from "@/components/custom/Header";
 import ContentHome from "@/components/custom/ContentHome";
+import ContentPersonal from "@/components/custom/ContentPersonal";
 
 export default function Home() {
   const [num, setNum] = useState<string>("0");
 
   const pathList = [
     "Home",
-    "Orders",
+    "Personal and students",
+    "Results",
     "Packages",
-    "Customers",
     "Analytics",
   ] as string[];
 
@@ -24,6 +25,7 @@ export default function Home() {
       descStudents="All the students stats"
       progressStudents="Descrease of the number of students"
     />,
+    <ContentPersonal></ContentPersonal>,
   ];
   const BreadList = [pathList[parseInt(num)]] as string[];
 
@@ -32,7 +34,7 @@ export default function Home() {
       <Aside num={num} setNum={setNum}></Aside>
       <div>
         <Header list={BreadList}></Header>
-        <div>{num === "0" && content[parseInt(num)]}</div>
+        <div>{content[parseInt(num)]}</div>
       </div>
     </div>
   );

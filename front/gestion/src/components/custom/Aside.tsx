@@ -4,17 +4,9 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "../ui/tooltip";
-import {
-  Home,
-  LineChart,
-  Package,
-  Settings,
-  ShoppingCart,
-  Users2,
-} from "lucide-react";
+import { Book, Home, LineChart, Package, Settings, Users2 } from "lucide-react";
 
 import { Label } from "../ui/label";
-//import { useState } from "react";
 
 interface AsideProps {
   num: string;
@@ -24,17 +16,17 @@ interface AsideProps {
 export default function Aside({ num, setNum }: AsideProps) {
   const contentTable = [
     "Home",
-    "Orders",
+    "Personals and students",
+    "Results",
     "Products",
-    "Customers",
     "Analytics",
   ] as string[];
 
   const componentTable = [
     <Home className="h-5 w-5"></Home>,
-    <ShoppingCart className="h-5 w-5"></ShoppingCart>,
-    <Package className="h-5 w-5"></Package>,
     <Users2 className="h-5 w-5"></Users2>,
+    <Book className="h-5 w-5"></Book>,
+    <Package className="h-5 w-5"></Package>,
     <LineChart className="h-5 w-5"></LineChart>,
   ];
 
